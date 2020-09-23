@@ -3,10 +3,14 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
+import { AlbumComponent } from './album/album.component';
+import { PhotosComponent } from './photos/photos.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AlbumComponent,
+    PhotosComponent
   ],
   imports: [
     BrowserModule,
