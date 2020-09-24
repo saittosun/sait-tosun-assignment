@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Album } from './../shared/album.model';
+import { DataServiceService } from './../services/data-service.service';
 
 @Component({
   selector: 'app-album',
@@ -6,25 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./album.component.css'],
 })
 export class AlbumComponent implements OnInit {
-  albums = [
-    {
-      userId: 1,
-      id: 1,
-      title: 'quidem molestiae enim',
-    },
-    {
-      userId: 1,
-      id: 2,
-      title: 'sunt qui excepturi placeat culpa',
-    },
-    {
-      userId: 1,
-      id: 3,
-      title: 'omnis laborum odio',
-    },
-  ];
+  albums: Album[] = [];
+  selectedAlbum: number;
 
-  constructor() {}
+  constructor(private dataService: DataServiceService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.dataService.selectedAlbumFromData.subscribe(
+      (album) => (this.selectedAlbum = album)
+    );
+    this.albums = this.dataService.getAllAlbums();
+  }
 }
