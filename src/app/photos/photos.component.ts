@@ -16,6 +16,13 @@ export class PhotosComponent implements OnInit {
     this.dataService.selectedAlbumFromData.subscribe(
       (sing) => (this.selectedSing = sing)
     );
-    this.selectedPhotos = this.dataService.getAllPhotos();
+    // this.selectedPhotos = this.dataService.getAllPhotos();
+    this.dataService.photosInSelectedAlbum.subscribe(
+      (photos) => (this.selectedPhotos = photos)
+    );
+  }
+
+  onPhotoHandler(id: number) {
+    console.log(id);
   }
 }

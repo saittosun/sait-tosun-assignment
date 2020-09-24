@@ -14,7 +14,19 @@ export class DataServiceService {
   private selectedAlbumSource = new BehaviorSubject<number>(1);
   selectedAlbumFromData = this.selectedAlbumSource.asObservable();
 
+  private selectedPhotoSource = new BehaviorSubject<Photo[]>([]);
+  photosInSelectedAlbum = this.selectedPhotoSource.asObservable();
+
   constructor(private http: HttpClient) {}
+
+  changeSelectedAlbum(id: number) {
+    this.selectedAlbumSource.next(id);
+    this.selectedPhotoSource.next(
+      this.allPhotos.filter((photo) => {
+        return photo.albumId === id;
+      })
+    );
+  }
 
   setAllAlbums() {
     this.http.get<any>(this.url + 'albums').subscribe((data) => {
@@ -36,7 +48,7 @@ export class DataServiceService {
     return this.allAlbums;
   }
 
-  getAllPhotos(): Photo[] {
-    return this.allPhotos;
-  }
+  // getAllPhotos(): Photo[] {
+  //   return this.allPhotos;
+  // }
 }

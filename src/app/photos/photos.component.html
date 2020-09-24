@@ -1,11 +1,14 @@
+<div *ngIf="selectedSing === -1">
+  Please select an album to see the sings!!!
+</div>
 <div class="container">
   <div class="row">
     <div *ngFor="let photo of selectedPhotos; let i = index">
-      <div>
-        <div> {{photo.albumId}} - {{photo.title}}</div>
+      <div (click)="onPhotoHandler(photo.id)">
+        <div>{{ photo.albumId }} - {{ photo.title }}</div>
       </div>
       <div>
-        <div> {{photo.thumbnailUrl}}</div>
+        <div>{{ photo.thumbnailUrl }}</div>
       </div>
     </div>
   </div>

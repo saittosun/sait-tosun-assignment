@@ -19,4 +19,9 @@ export class AlbumComponent implements OnInit {
     );
     this.albums = this.dataService.getAllAlbums();
   }
+
+  onAlbumHandler(id: number) {
+    console.log(id);
+    this.dataService.changeSelectedAlbum(id);
+  }
 }
