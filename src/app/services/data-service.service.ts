@@ -24,7 +24,19 @@ export class DataServiceService {
     });
   }
 
+  setAllPhotos() {
+    this.http.get<any>(this.url + 'photos').subscribe((data) => {
+      for (let i = 0; i < data.length; i++) {
+        this.allPhotos.push(data[i]);
+      }
+    });
+  }
+
   getAllAlbums(): Album[] {
     return this.allAlbums;
+  }
+
+  getAllPhotos(): Photo[] {
+    return this.allPhotos;
   }
 }
