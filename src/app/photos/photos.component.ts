@@ -10,6 +10,7 @@ import { DataServiceService } from './../services/data-service.service';
 export class PhotosComponent implements OnInit {
   selectedPhotos: Photo[] = [];
   selectedSing: number;
+  
   constructor(private dataService: DataServiceService) {}
 
   ngOnInit(): void {

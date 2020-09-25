@@ -1,7 +1,15 @@
+<input
+  type="text"
+  class="form-control"
+  [(ngModel)]="userInput"
+  (ngModelChange)="onValueChange($event)" />
+<!-- <p>{{ userInput }}</p> -->
 <div class="container">
   <div class="row">
     <div *ngFor="let album of albums; let i = index">
-      <div (click)="onAlbumHandler(album.id)">{{i+1}} - {{album.title}}</div>
+      <div (click)="onAlbumHandler(album.id)">
+        {{ i + 1 }} - {{ album.title }}
+      </div>
     </div>
   </div>
 </div>

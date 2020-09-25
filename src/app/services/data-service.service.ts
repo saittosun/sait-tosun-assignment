@@ -17,6 +17,9 @@ export class DataServiceService {
   private selectedPhotoSource = new BehaviorSubject<Photo[]>([]);
   photosInSelectedAlbum = this.selectedPhotoSource.asObservable();
 
+  private selectedAlbumArraySource = new BehaviorSubject<Album[]>([]);
+  albumsWithSelectedInput = this.selectedAlbumArraySource.asObservable();
+
   constructor(private http: HttpClient) {}
 
   changeSelectedAlbum(id: number) {
@@ -25,6 +28,12 @@ export class DataServiceService {
       this.allPhotos.filter((photo) => {
         return photo.albumId === id;
       })
+    );
+  }
+
+  filteredAlbums(input: string) {
+    this.selectedAlbumArraySource.next(
+      this.allAlbums.filter((album) => album.title.includes(input))
     );
   }
 
