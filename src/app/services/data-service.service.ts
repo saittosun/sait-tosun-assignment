@@ -11,7 +11,7 @@ export class DataServiceService {
   url = 'https://jsonplaceholder.typicode.com/';
   allAlbums: Album[] = [];
   allPhotos: Photo[] = [];
-  private selectedAlbumSource = new BehaviorSubject<number>(1);
+  private selectedAlbumSource = new BehaviorSubject<number>(-1);
   selectedAlbumFromData = this.selectedAlbumSource.asObservable();
 
   private selectedPhotoSource = new BehaviorSubject<Photo[]>([]);
