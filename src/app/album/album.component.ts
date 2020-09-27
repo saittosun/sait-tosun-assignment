@@ -11,6 +11,7 @@ export class AlbumComponent implements OnInit {
   userInput: any;
   albums: Album[] = [];
   selectedAlbum: number;
+  filteredStatus: string;
 
   constructor(private dataService: DataServiceService) {}
 
@@ -30,8 +31,8 @@ export class AlbumComponent implements OnInit {
     this.dataService.changeSelectedAlbum(id);
   }
 
-  onValueChange(changes: SimpleChanges) {
-    console.log(this.userInput);
-    this.dataService.filteredAlbums(this.userInput);
-  }
+  // onValueChange(changes: SimpleChanges) {
+  //   console.log(this.userInput);
+  //   this.dataService.filteredAlbums(this.userInput);
+  // }
 }

@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 import { AlbumComponent } from './album/album.component';
 import { PhotosComponent } from './photos/photos.component';
 import { FormsModule } from '@angular/forms';
+import { FilterPipe } from './shared/filter.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     AlbumComponent,
-    PhotosComponent
+    PhotosComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

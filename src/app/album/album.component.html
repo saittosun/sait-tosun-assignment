@@ -1,12 +1,17 @@
-<input
+<!-- <input
   type="text"
   class="form-control"
   [(ngModel)]="userInput"
-  (ngModelChange)="onValueChange($event)" />
+  (ngModelChange)="onValueChange($event)" /> -->
 <!-- <p>{{ userInput }}</p> -->
+
+<!-- filter with pipe -->
+<input type="text" class="form-control" [(ngModel)]="filteredStatus">
+
+
 <div class="container">
   <div class="row">
-    <div *ngFor="let album of albums; let i = index">
+    <div *ngFor="let album of albums | filter:filteredStatus:'title'; let i = index">
       <div (click)="onAlbumHandler(album.id)">
         {{ i + 1 }} - {{ album.title }}
       </div>
