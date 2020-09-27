@@ -8,13 +8,15 @@ import { AlbumComponent } from './album/album.component';
 import { PhotosComponent } from './photos/photos.component';
 import { FormsModule } from '@angular/forms';
 import { FilterPipe } from './shared/filter.pipe';
+import { ShortenPipe } from './shared/shorten.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     AlbumComponent,
     PhotosComponent,
-    FilterPipe
+    FilterPipe,
+    ShortenPipe
   ],
   imports: [
     BrowserModule,

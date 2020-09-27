@@ -8,12 +8,11 @@
 <!-- filter with pipe -->
 <input type="text" class="form-control" [(ngModel)]="filteredStatus">
 
-
 <div class="container">
   <div class="row">
     <div *ngFor="let album of albums | filter:filteredStatus:'title'; let i = index">
       <div (click)="onAlbumHandler(album.id)">
-        {{ i + 1 }} - {{ album.title }}
+        {{ i + 1 }} - {{ album.title | shorten:30 }}
       </div>
     </div>
   </div>
