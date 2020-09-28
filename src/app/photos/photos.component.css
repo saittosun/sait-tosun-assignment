@@ -1,0 +1,8 @@
+.course-list-item {
+  font-size: small;
+  padding-top: 20px;
+  color: black;
+}
+.course-list-item h5{
+  font-size: 1.2em;
+}
