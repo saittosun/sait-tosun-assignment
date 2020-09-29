@@ -9,6 +9,7 @@ import { DataServiceService } from './services/data-service.service';
 export class AppComponent implements OnInit {
   title = 'sait-tosun-assignment';
 
+
   constructor(private dataService: DataServiceService) {}
 
   ngOnInit(): void {

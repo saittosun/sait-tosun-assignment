@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material.module';
 
 
 import { AppComponent } from './app.component';
@@ -9,6 +11,7 @@ import { PhotosComponent } from './photos/photos.component';
 import { FormsModule } from '@angular/forms';
 import { FilterPipe } from './shared/filter.pipe';
 import { ShortenPipe } from './shared/shorten.pipe';
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -16,15 +19,19 @@ import { ShortenPipe } from './shared/shorten.pipe';
     AlbumComponent,
     PhotosComponent,
     FilterPipe,
-    ShortenPipe
+    ShortenPipe,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent],
-  exports: []
+  exports: [],
+  // entryComponents: [ModalComponent]
 })
 export class AppModule { }
