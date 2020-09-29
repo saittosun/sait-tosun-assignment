@@ -1,16 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Photo } from '../shared/photo.model';
 import { DataServiceService } from './../services/data-service.service';
-import {
-  MatDialog,
-  MatDialogRef,
-  MAT_DIALOG_DATA,
-} from '@angular/material/dialog';
-import { ModalComponent } from '../modal/modal.component';
-
-interface DialogData {
-  imagePath: string;
-}
 
 @Component({
   selector: 'app-photos',
@@ -20,23 +10,21 @@ interface DialogData {
 export class PhotosComponent implements OnInit {
   selectedPhotos: Photo[] = [];
   selectedSing: number;
-  // imagePath: string;
   showModal: boolean;
   url: string;
+  isLoading = false;
 
-  constructor(
-    private dataService: DataServiceService,
-    public dialog: MatDialog
-  ) {}
+  constructor(private dataService: DataServiceService) {}
 
   ngOnInit(): void {
-    this.dataService.selectedAlbumFromData.subscribe(
-      (sing) => (this.selectedSing = sing)
-    );
+    // this.dataService.selectedAlbumFromData.subscribe(
+    //   (sing) => (this.selectedSing = sing)
+    // );
     // this.selectedPhotos = this.dataService.getAllPhotos();
     this.dataService.photosInSelectedAlbum.subscribe(
       (photos) => (this.selectedPhotos = photos)
     );
+    this.dataService.setAllPhotos();
   }
 
   onShow(id: number) {
@@ -49,19 +37,10 @@ export class PhotosComponent implements OnInit {
   }
 
   onPhotoHandler(id: number) {
+    this.isLoading = true;
     this.url = this.selectedPhotos.filter((photo) => photo.id === id)[0].url;
+    this.isLoading = false;
     console.log(this.url);
     console.log(id);
   }
-
-  // openDialog(): void {
-  //   const dialogRef = this.dialog.open(ModalComponent, {
-  //     width: '300px',
-  //     data: {}
-  //   });
-
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     this.imagePath = result;
-  //   });
-  // }
 }
