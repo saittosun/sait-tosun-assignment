@@ -9,7 +9,7 @@ import { DataServiceService } from './../services/data-service.service';
 })
 export class PhotosComponent implements OnInit {
   selectedPhotos: Photo[] = [];
-  selectedSing: number;
+  // selectedSing: number;
   showModal: boolean;
   url: string;
   isLoading = false;
@@ -27,7 +27,7 @@ export class PhotosComponent implements OnInit {
     this.dataService.setAllPhotos();
   }
 
-  onShow(id: number) {
+  onShow() {
     this.showModal = true;
     // console.log(id);
   }
@@ -37,9 +37,9 @@ export class PhotosComponent implements OnInit {
   }
 
   onPhotoHandler(id: number) {
-    this.isLoading = true;
+    // this.isLoading = true;
     this.url = this.selectedPhotos.filter((photo) => photo.id === id)[0].url;
-    this.isLoading = false;
+    // this.isLoading = false;
     console.log(this.url);
     console.log(id);
   }
