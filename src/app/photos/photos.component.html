@@ -14,9 +14,22 @@
   Please select an album to see the sings!!!
 </div> -->
 
-<div class="card-deck row" *ngFor="let photo of selectedPhotos; let i = index">
-  <div class="card flex-row" [hidden]="i % 3 != 0">
-    <div class="col-lg-4" (click)="onPhotoHandler(photo.id)">
+
+
+  <div class="card-group" *ngFor="let photo of selectedPhotos; let i = index" [hidden]="i % 3 != 0">
+    <!-- <div class="card d-flex flex-wrap" (click)="onPhotoHandler(photo.id)">
+      <img
+        src="{{ photo.thumbnailUrl }}"
+        alt="{{ photo.title }}"
+        class="card-img-top"
+        (click)="onShow()"
+      />
+      <div class="card-body">
+        <h5 class="card-title">Photo {{photo.id }}</h5>
+        <p class="card-text">{{ photo.title }}</p>
+      </div>
+    </div> -->
+    <div class="card col-lg-4 mb-2" (click)="onPhotoHandler(photo.id)">
       <img
         src="{{ selectedPhotos[i].thumbnailUrl }}"
         alt="{{ selectedPhotos[i].title }}"
@@ -25,10 +38,10 @@
       />
       <div class="card-body">
         <h5 class="card-title">Photo {{selectedPhotos[i].id }}</h5>
-        <p class="card-text">{{ selectedPhotos[i].title }}</p>
+        <p class="card-text">{{ selectedPhotos[i].title | shorten:10 }}</p>
       </div>
     </div>
-    <div class="col-lg-4" (click)="onPhotoHandler(photo.id+1)">
+    <div class="card col-lg-4 mb-2" (click)="onPhotoHandler(photo.id+1)">
       <img
         src="{{ selectedPhotos[i + 1].thumbnailUrl }}"
         alt="{{ selectedPhotos[i + 1].title }}"
@@ -52,10 +65,10 @@
       </div>
       <div class="card-body">
         <h5 class="card-title">Photo {{ selectedPhotos[i + 1].id }}</h5>
-        <p class="card-text">{{ selectedPhotos[i + 1].title }}</p>
+        <p class="card-text">{{ selectedPhotos[i + 1].title | shorten:10 }}</p>
       </div>
     </div>
-    <div class="col-lg-4" (click)="onPhotoHandler(photo.id+2)">
+    <div class="card col-lg-4 mb-2" (click)="onPhotoHandler(photo.id+2)">
       <img
         src="{{ selectedPhotos[i + 2].thumbnailUrl }}"
         alt="{{ selectedPhotos[i + 2].title }}"
@@ -64,11 +77,13 @@
       />
       <div class="card-body">
         <h5 class="card-title">Photo {{ selectedPhotos[i + 2].id }}</h5>
-        <p class="card-text">{{ selectedPhotos[i + 2].title }}</p>
+        <p class="card-text">{{ selectedPhotos[i + 2].title | shorten:10}}</p>
       </div>
     </div>
   </div>
-</div>
+
+
+
 <!-- <div>
               <button mat-raised-button (click)="openDialog()">Open modal</button>
               <br />
