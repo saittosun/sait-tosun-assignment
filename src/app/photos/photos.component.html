@@ -14,116 +14,77 @@
   Please select an album to see the sings!!!
 </div> -->
 
-
-
-  <div class="card-group" *ngFor="let photo of selectedPhotos; let i = index" [hidden]="i % 3 != 0">
-    <!-- <div class="card d-flex flex-wrap" (click)="onPhotoHandler(photo.id)">
-      <img
-        src="{{ photo.thumbnailUrl }}"
-        alt="{{ photo.title }}"
-        class="card-img-top"
-        (click)="onShow()"
-      />
-      <div class="card-body">
-        <h5 class="card-title">Photo {{photo.id }}</h5>
-        <p class="card-text">{{ photo.title }}</p>
-      </div>
-    </div> -->
-    <div class="card col-lg-4 mb-2" (click)="onPhotoHandler(photo.id)">
-      <img
-        src="{{ selectedPhotos[i].thumbnailUrl }}"
-        alt="{{ selectedPhotos[i].title }}"
-        class="card-img-top"
-        (click)="onShow()"
-      />
-      <div class="card-body">
-        <h5 class="card-title">Photo {{selectedPhotos[i].id }}</h5>
-        <p class="card-text">{{ selectedPhotos[i].title | shorten:10 }}</p>
-      </div>
+<div
+  class="card-group"
+  *ngFor="let photo of selectedPhotos; let i = index"
+  [hidden]="i % 3 != 0"
+>
+  <div class="card col-lg-4 mb-2" (click)="onPhotoHandler(photo.id)">
+    <img
+      src="{{ selectedPhotos[i].thumbnailUrl }}"
+      alt="{{ selectedPhotos[i].title }}"
+      class="card-img-top"
+      (click)="onShow()"
+    />
+    <div class="card-body">
+      <h5 class="card-title">Photo {{ selectedPhotos[i].id }}</h5>
+      <p class="card-text">{{ selectedPhotos[i].title | shorten: 10 }}</p>
     </div>
-    <div class="card col-lg-4 mb-2" (click)="onPhotoHandler(photo.id+1)">
-      <img
-        src="{{ selectedPhotos[i + 1].thumbnailUrl }}"
-        alt="{{ selectedPhotos[i + 1].title }}"
-        class="card-img-top"
-        (click)="onShow()"
-      />
-      <div *ngIf="!isLoading" [style.display]="showModal ? 'block' : 'none'" class="modal" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title" id="myModalLabel">Image preview</h4>
-            </div>
-            <div class="modal-body">
-              <img class="img-fluid" src={{url}} >
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal" (click) = "onHide()">Close</button>
-            </div>
+  </div>
+  <div class="card col-lg-4 mb-2" (click)="onPhotoHandler(photo.id + 1)">
+    <img
+      src="{{ selectedPhotos[i + 1].thumbnailUrl }}"
+      alt="{{ selectedPhotos[i + 1].title }}"
+      class="card-img-top"
+      (click)="onShow()"
+    />
+    <div
+      *ngIf="!isLoading"
+      [style.display]="showModal ? 'block' : 'none'"
+      class="modal"
+      id="imagemodal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="myModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">Image preview</h4>
+          </div>
+          <div class="modal-body">
+            <img class="img-fluid" src="{{ url }}" />
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-default"
+              data-dismiss="modal"
+              (click)="onHide()"
+            >
+              Close
+            </button>
           </div>
         </div>
       </div>
-      <div class="card-body">
-        <h5 class="card-title">Photo {{ selectedPhotos[i + 1].id }}</h5>
-        <p class="card-text">{{ selectedPhotos[i + 1].title | shorten:10 }}</p>
-      </div>
     </div>
-    <div class="card col-lg-4 mb-2" (click)="onPhotoHandler(photo.id+2)">
-      <img
-        src="{{ selectedPhotos[i + 2].thumbnailUrl }}"
-        alt="{{ selectedPhotos[i + 2].title }}"
-        class="card-img-top"
-        (click)="onShow()"
-      />
-      <div class="card-body">
-        <h5 class="card-title">Photo {{ selectedPhotos[i + 2].id }}</h5>
-        <p class="card-text">{{ selectedPhotos[i + 2].title | shorten:10}}</p>
-      </div>
+    <div class="card-body">
+      <h5 class="card-title">Photo {{ selectedPhotos[i + 1].id }}</h5>
+      <p class="card-text">{{ selectedPhotos[i + 1].title | shorten: 10 }}</p>
     </div>
   </div>
+  <div class="card col-lg-4 mb-2" (click)="onPhotoHandler(photo.id + 2)">
+    <img
+      src="{{ selectedPhotos[i + 2].thumbnailUrl }}"
+      alt="{{ selectedPhotos[i + 2].title }}"
+      class="card-img-top"
+      (click)="onShow()"
+    />
+    <div class="card-body">
+      <h5 class="card-title">Photo {{ selectedPhotos[i + 2].id }}</h5>
+      <p class="card-text">{{ selectedPhotos[i + 2].title | shorten: 10 }}</p>
+    </div>
+  </div>
+</div>
 
-
-
-<!-- <div>
-              <button mat-raised-button (click)="openDialog()">Open modal</button>
-              <br />
-              <div *ngIf="imagePath">
-                You signed up with: <p></p>
-              </div>
-            </div> -->
-
-<!-- <div class="list-group" *ngFor="let photo of selectedPhotos; let i = index">
-              <div class="list-group-item bg-light" >
-                Photo {{photo.id}}
-              </div>
-              <a href="#" class="list-group-item">
-                <div class="row" (click)="onPhotoHandler(photo.id)">
-                  <div class="col-lg-4 col-md-4">
-                    <img
-                      src={{photo.thumbnailUrl}}
-                      class="img-fluid rounded hover-shadow cursor"
-                      alt=""
-                      (click)="onShow()">
-                    <mat-spinner *ngIf="isLoading"></mat-spinner>
-                    <div *ngIf="!isLoading" [style.display]="showModal ? 'block' : 'none'" class="modal" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h4 class="modal-title" id="myModalLabel">Image preview</h4>
-                          </div>
-                          <div class="modal-body">
-                            <img class="img-fluid" src={{url}} >
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal" (click) = "onHide()">Close</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-8 col-md-4">
-                    <h5>{{photo.title}}</h5>
-                  </div>
-                </div>
-              </a>
-            </div> -->

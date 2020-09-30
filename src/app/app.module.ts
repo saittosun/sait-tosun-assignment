@@ -1,9 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatCardModule } from '@angular/material/card';
 
 import { AppComponent } from './app.component';
 import { AlbumComponent } from './album/album.component';
@@ -24,13 +22,10 @@ import { ShortenPipe } from './shared/shorten.pipe';
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    BrowserAnimationsModule,
     MatProgressSpinnerModule,
-    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
-  exports: [],
-  // entryComponents: [ModalComponent]
+  exports: []
 })
 export class AppModule {}

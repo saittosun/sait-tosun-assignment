@@ -13,6 +13,7 @@ export class PhotosComponent implements OnInit {
   showModal: boolean;
   url: string;
   isLoading = false;
+  filteredStatus: string;
 
   constructor(private dataService: DataServiceService) {}
 
