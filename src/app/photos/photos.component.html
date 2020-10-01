@@ -6,85 +6,91 @@
       placeholder="Search for..."
       aria-label="Recipient's username"
       aria-describedby="button-addon2"
+      [(ngModel)]="filteredStatus"
+      name="search"
     />
   </div>
 </form>
 
-<!-- <div *ngIf="selectedSing === -1">
+<div *ngIf="selectedPhotos.length === 0">
   Please select an album to see the sings!!!
-</div> -->
+</div>
 
-<div
-  class="card-group"
-  *ngFor="let photo of selectedPhotos; let i = index"
-  [hidden]="i % 3 != 0"
->
-  <div class="card col-lg-4 mb-2" (click)="onPhotoHandler(photo.id)">
-    <img
-      src="{{ selectedPhotos[i].thumbnailUrl }}"
-      alt="{{ selectedPhotos[i].title }}"
-      class="card-img-top"
-      (click)="onShow()"
-    />
-    <div class="card-body">
-      <h5 class="card-title">Photo {{ selectedPhotos[i].id }}</h5>
-      <p class="card-text">{{ selectedPhotos[i].title | shorten: 10 }}</p>
+<div *ngIf="isLoading">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+<div *ngIf="!isLoading">
+  <div
+    class="card-group"
+    *ngFor="let photo of selectedPhotos | filter:filteredStatus:'title'; let i = index"
+    [hidden]="i % 3 != 0"
+  >
+    <div class="card col-lg-4 mb-2" *ngIf="selectedPhotos.length > i" (click)="onPhotoHandler(photo.id)">
+      <img
+        src="{{ selectedPhotos[i].thumbnailUrl }}"
+        alt="{{ selectedPhotos[i].title }}"
+        class="card-img-top"
+        (click)="onShow()"
+      />
+      <div class="card-body">
+        <h5 class="card-title">Photo {{ selectedPhotos[i].id }}</h5>
+        <p class="card-text">{{ selectedPhotos[i].title | shorten: 10 }}</p>
+      </div>
     </div>
-  </div>
-  <div class="card col-lg-4 mb-2" (click)="onPhotoHandler(photo.id + 1)">
-    <img
-      src="{{ selectedPhotos[i + 1].thumbnailUrl }}"
-      alt="{{ selectedPhotos[i + 1].title }}"
-      class="card-img-top"
-      (click)="onShow()"
-    />
-    <div
-      *ngIf="!isLoading"
-      [style.display]="showModal ? 'block' : 'none'"
-      class="modal"
-      id="imagemodal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="myModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title" id="myModalLabel">Image preview</h4>
-          </div>
-          <div class="modal-body">
-            <img class="img-fluid" src="{{ url }}" />
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-default"
-              data-dismiss="modal"
-              (click)="onHide()"
-            >
-              Close
-            </button>
+    <div class="card col-lg-4 mb-2" *ngIf="selectedPhotos.length > i" (click)="onPhotoHandler(photo.id + 1)">
+      <img
+        src="{{ selectedPhotos[i + 1].thumbnailUrl }}"
+        alt="{{ selectedPhotos[i + 1].title }}"
+        class="card-img-top"
+        (click)="onShow()"
+      />
+      <div
+        *ngIf="!isLoading"
+        [style.display]="showModal ? 'block' : 'none'"
+        class="modal"
+        id="imagemodal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="myModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="myModalLabel">Image preview</h4>
+            </div>
+            <div class="modal-body">
+              <img class="img-fluid" src="{{ url }}" />
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-dark"
+                data-dismiss="modal"
+                (click)="onHide()"
+              >
+                Close
+              </button>
+            </div>
           </div>
         </div>
       </div>
+      <div class="card-body">
+        <h5 class="card-title">Photo {{ selectedPhotos[i + 1].id }}</h5>
+        <p class="card-text">{{ selectedPhotos[i + 1].title | shorten: 10 }}</p>
+      </div>
     </div>
-    <div class="card-body">
-      <h5 class="card-title">Photo {{ selectedPhotos[i + 1].id }}</h5>
-      <p class="card-text">{{ selectedPhotos[i + 1].title | shorten: 10 }}</p>
-    </div>
-  </div>
-  <div class="card col-lg-4 mb-2" (click)="onPhotoHandler(photo.id + 2)">
-    <img
-      src="{{ selectedPhotos[i + 2].thumbnailUrl }}"
-      alt="{{ selectedPhotos[i + 2].title }}"
-      class="card-img-top"
-      (click)="onShow()"
-    />
-    <div class="card-body">
-      <h5 class="card-title">Photo {{ selectedPhotos[i + 2].id }}</h5>
-      <p class="card-text">{{ selectedPhotos[i + 2].title | shorten: 10 }}</p>
+    <div class="card col-lg-4 mb-2" *ngIf="selectedPhotos.length > i" (click)="onPhotoHandler(photo.id + 2)">
+      <img
+        src="{{ selectedPhotos[i + 2].thumbnailUrl }}"
+        alt="{{ selectedPhotos[i + 2].title }}"
+        class="card-img-top"
+        (click)="onShow()"
+      />
+      <div class="card-body">
+        <h5 class="card-title">Photo {{ selectedPhotos[i + 2].id }}</h5>
+        <p class="card-text">{{ selectedPhotos[i + 2].title | shorten: 10 }}</p>
+      </div>
     </div>
   </div>
 </div>
-

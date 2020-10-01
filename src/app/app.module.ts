@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { AppComponent } from './app.component';
 import { AlbumComponent } from './album/album.component';
@@ -9,6 +8,7 @@ import { PhotosComponent } from './photos/photos.component';
 import { FormsModule } from '@angular/forms';
 import { FilterPipe } from './shared/filter.pipe';
 import { ShortenPipe } from './shared/shorten.pipe';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -17,12 +17,12 @@ import { ShortenPipe } from './shared/shorten.pipe';
     PhotosComponent,
     FilterPipe,
     ShortenPipe,
+    LoadingSpinnerComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule,
-    MatProgressSpinnerModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

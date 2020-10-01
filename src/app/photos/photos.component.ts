@@ -9,28 +9,27 @@ import { DataServiceService } from './../services/data-service.service';
 })
 export class PhotosComponent implements OnInit {
   selectedPhotos: Photo[] = [];
-  // selectedSing: number;
   showModal: boolean;
   url: string;
+  filteredStatus = '';
   isLoading = false;
-  filteredStatus: string;
 
   constructor(private dataService: DataServiceService) {}
 
   ngOnInit(): void {
-    // this.dataService.selectedAlbumFromData.subscribe(
-    //   (sing) => (this.selectedSing = sing)
-    // );
-    // this.selectedPhotos = this.dataService.getAllPhotos();
-    this.dataService.photosInSelectedAlbum.subscribe(
-      (photos) => (this.selectedPhotos = photos)
-    );
-    this.dataService.setAllPhotos();
+    this.isLoading = true;
+    setTimeout(() => {
+      this.dataService.photosInSelectedAlbum.subscribe(
+        (photos) => {
+          this.selectedPhotos = photos;
+          this.isLoading = false;
+        }
+      );
+    }, 2000);
   }
 
   onShow() {
     this.showModal = true;
-    // console.log(id);
   }
 
   onHide() {
@@ -38,10 +37,6 @@ export class PhotosComponent implements OnInit {
   }
 
   onPhotoHandler(id: number) {
-    // this.isLoading = true;
     this.url = this.selectedPhotos.filter((photo) => photo.id === id)[0].url;
-    // this.isLoading = false;
-    console.log(this.url);
-    console.log(id);
   }
 }

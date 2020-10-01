@@ -11,19 +11,19 @@ export class DataServiceService {
   url = 'https://jsonplaceholder.typicode.com/';
   allAlbums: Album[] = [];
   allPhotos: Photo[] = [];
-  private selectedAlbumSource = new BehaviorSubject<number>(-1);
-  selectedAlbumFromData = this.selectedAlbumSource.asObservable();
+  // private selectedAlbumSource = new BehaviorSubject<number>(-1);
+  // selectedAlbumFromData = this.selectedAlbumSource.asObservable();
 
   private selectedPhotoSource = new BehaviorSubject<Photo[]>([]);
   photosInSelectedAlbum = this.selectedPhotoSource.asObservable();
 
-  private selectedAlbumArraySource = new BehaviorSubject<Album[]>([]);
-  albumsWithSelectedInput = this.selectedAlbumArraySource.asObservable();
+  // private selectedAlbumArraySource = new BehaviorSubject<Album[]>([]);
+  // albumsWithSelectedInput = this.selectedAlbumArraySource.asObservable();
 
   constructor(private http: HttpClient) {}
 
   changeSelectedAlbum(id: number) {
-    this.selectedAlbumSource.next(id);
+    // this.selectedAlbumSource.next(id);
     this.selectedPhotoSource.next(
       this.allPhotos.filter((photo) => {
         return photo.albumId === id;
@@ -31,11 +31,11 @@ export class DataServiceService {
     );
   }
 
-  filteredAlbums(input: string) {
-    this.selectedAlbumArraySource.next(
-      this.allAlbums.filter((album) => album.title.includes(input))
-    );
-  }
+  // filteredAlbums(input: string) {
+  //   this.selectedAlbumArraySource.next(
+  //     this.allAlbums.filter((album) => album.title.includes(input))
+  //   );
+  // }
 
   setAllAlbums() {
     this.http.get<any>(this.url + 'albums').subscribe((data) => {

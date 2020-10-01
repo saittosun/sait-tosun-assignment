@@ -13,5 +13,8 @@ export class AppComponent implements OnInit {
   constructor(private dataService: DataServiceService) {}
 
   ngOnInit(): void {
+    this.dataService.setAllPhotos();
+    this.dataService.setAllAlbums();
+
   }
 }
