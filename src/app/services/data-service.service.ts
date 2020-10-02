@@ -39,6 +39,7 @@ export class DataServiceService {
 
   setAllAlbums() {
     this.http.get<any>(this.url + 'albums').subscribe((data) => {
+      console.log(data);
       for (let i = 0; i < data.length; i++) {
         this.allAlbums.push(data[i]);
       }

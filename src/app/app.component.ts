@@ -15,6 +15,5 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.dataService.setAllPhotos();
     this.dataService.setAllAlbums();
-
   }
 }

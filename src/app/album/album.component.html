@@ -12,7 +12,7 @@
       <input type="search" class="form-control form-control-sm" placeholder="Search for..." aria-label="Recipient's username" aria-describedby="button-addon2" [(ngModel)]="filteredStatus" name="search">
     </div>
     <div class="card mb-2" *ngFor="let album of albums | filter:filteredStatus:'title'; let i = index" (click)="onAlbumHandler(album.id)">
-      <div class="card-header bg-dark text-white">Album {{i+1}}</div>
+      <div class="card-header bg-dark text-white">Album {{album.id}}</div>
       <div class="card-body" >
         <h5 class="card-title">
           {{ album.title | shorten:30 }}
